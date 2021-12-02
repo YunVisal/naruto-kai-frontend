@@ -15,5 +15,10 @@ export default {
     padding: .5em;
     color: #fff;
     border-radius: 5px;
+    margin: .1em;
+}
+
+.btn:hover{
+    background-color: #154481;
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
-    <img :src="url" alt="thumbnail" class="thumbnail">
-    <h5>{{duration}}</h5>
+    <div class="thumb-container">
+        <img :src="url" alt="thumbnail" class="thumbnail">
+        <h5>{{duration}}</h5>
+    </div>
 </template>
 
 <script>
@@ -18,6 +20,10 @@ export default {
 </script>
 
 <style scoped>
+.thumb-container{
+    position: relative;
+}
+
 .thumbnail{
     width: 100%;
     height: auto;
@@ -26,8 +32,8 @@ export default {
 
 h5{
     position: absolute;
-    right: 1.5em;
-    top: calc(100% - 7em);
+    right: 0%;
+    bottom: 5%;
     color: #fff;
     background-color: #000;
 }

@@ -1,20 +1,5 @@
 <template>
     <section class="section-container">
-        <base-section title="Naruto">
-            <base-video-thumbnail 
-                v-for="episode in episodes"
-                :key="episode.episode"
-                :episode="episode.episode"
-                :title="'Ep' + episode.episode + ': ' +  episode.title"
-                :arc="episode.arc"
-                :url="episode.url"
-                :duration="episode.duration"
-            />
-        </base-section>
-        <base-button title="Load More" url="/naruto" />
-    </section>
-
-    <section class="section-container">
         <base-section title="Naruto Shippuden">
             <base-video-thumbnail 
                 v-for="episode in episodes"
@@ -26,7 +11,6 @@
                 :duration="episode.duration"
             />
         </base-section>
-        <base-button title="Load More" url="/shippuden" />
     </section>
 </template>
 
@@ -34,7 +18,7 @@
 import BaseVideoThumbnail from '../components/ui/BaseVideoThumbnail.vue'
 
 export default {
-    name: 'Home',
+    name: 'Shippuden',
     components: {
         BaseVideoThumbnail
     },

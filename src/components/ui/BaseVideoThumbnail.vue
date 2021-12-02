@@ -3,7 +3,7 @@
         <router-link :to="'/episode/' + episode">
             <base-thumbnail :url="url" :duration="duration"></base-thumbnail>
             <h1>{{title}}</h1>
-            <h4>{{arc}}</h4>
+            <p>{{arc}}</p>
         </router-link>
     </div>
 </template>
@@ -26,7 +26,10 @@ export default {
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: 25%;
-    position: relative;
+}
+
+.video-thumbnail:hover{
+    background-color: #c99542;
 }
 
 @media screen and (max-width: 1024px){

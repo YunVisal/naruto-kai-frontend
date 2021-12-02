@@ -6,9 +6,9 @@
         </button>
         <nav :class="{active: isNavToggle}">
             <ul>
-                <li><a href="#">Naruto</a></li>
-                <li><a href="#">Naruto Shippuden</a></li>
-                <li><a href="#">Arc</a></li>
+                <li><router-link to="/naruto">Naruto</router-link></li>
+                <li><router-link to="/shippuden">Naruto Shippuden</router-link></li>
+                <li><router-link to="/arc">Arc</router-link></li>
                 <li><router-link to="/about">About</router-link></li>
             </ul>
         </nav>
