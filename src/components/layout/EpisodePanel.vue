@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/episode/2" class="panel">
+  <router-link :to="url" class="panel">
     <div class="item">
       <base-thumbnail
         url="https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg"
@@ -21,6 +21,7 @@ export default {
   components: {
     BaseThumbnail,
   },
+  props: ['url']
 };
 </script>
 

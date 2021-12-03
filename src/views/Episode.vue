@@ -7,7 +7,7 @@
         </div>
         <div class="next-container">
             <base-section title="Next Episode">
-                <episode-panel />
+                <episode-panel :url="'/episode/2'" />
             </base-section>
             <episode-list />
         </div>
