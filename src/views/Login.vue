@@ -4,9 +4,9 @@
       <base-section title="Login as Admin">
         <form method="get" @submit.prevent="login">
           <label for="email">Email: </label>
-          <input type="text" name="email" id="email" />
+          <input type="text" v-model="email" placeholder="email" />
           <label for="password">Password: </label>
-          <input type="password" name="password" id="password" />
+          <input type="password" v-model="password" placeholder="password" />
           <input type="submit" value="Login" />
           <p v-if="isError">Something went wrong!</p>
         </form>
@@ -20,13 +20,30 @@ export default {
     name: 'Login',
     data(){
         return {
+            email: "",
+            password: "",
             isError: false
         }
     },
     methods: {
-        login(){
+        async login(){
+          if(this.email.indexOf('@') === -1){
+            this.isError = true;
+            return;
+          }
+          const data = {
+            email: this.email,
+            password: this.password
+          }
+          try{
+            await this.$store.dispatch("auth/login", data);
+            this.isError = false;
+            this.$cookies.set('_session', this.$store.getters['auth/token'], 60 * 60);
             this.$router.push('/admin');
-            //this.isError = true;
+          } catch (err){
+            this.isError = true;
+            return;
+          }
         }
     }
 }

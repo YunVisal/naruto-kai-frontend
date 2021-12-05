@@ -32,7 +32,7 @@ export default {
   computed: {
     episodes() {
       try {
-        return this.$store.getters["episode/episodeCollection"](27, 73);
+        return this.$store.getters["episode/episodeCollection"](28, 73);
       } catch (err) {
         this.$router.push("/");
       }

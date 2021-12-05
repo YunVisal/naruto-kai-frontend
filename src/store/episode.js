@@ -2,7 +2,7 @@ const episodeModule = {
     namespaced: true,
     state() {
         return {
-            episodes: null,
+            episodes: [],
             currentEpisode: null,
             nextEpisode: null,
         };
@@ -53,6 +53,9 @@ const episodeModule = {
                 }
             });
             return data;
+        },
+        hasEpisode(state){
+            return state.episodes.length > 0;
         }
     }
 };
