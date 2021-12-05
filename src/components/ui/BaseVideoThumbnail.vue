@@ -3,7 +3,7 @@
         <router-link :to="'/episode/' + episode">
             <base-thumbnail :url="url" :duration="duration"></base-thumbnail>
             <h1>{{title}}</h1>
-            <p>{{arc}}</p>
+            <p>{{arcTitle}}</p>
         </router-link>
     </div>
 </template>
@@ -16,7 +16,16 @@ export default {
     components: { 
         BaseThumbnail 
     },
-    props: ['episode', 'title', 'arc', 'url', 'duration']
+    props: ['episode', 'title', 'arc', 'url', 'duration'],
+    computed: {
+        arcTitle(){
+            try{
+                return this.$store.getters['arc/arc'](this.arc).title;
+            }catch(err){
+                this.$router.push("/");
+            }
+        }
+    }
 }
 </script>
 

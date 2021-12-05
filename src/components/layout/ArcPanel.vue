@@ -1,14 +1,18 @@
 <template>
-  <router-link :to="url + id" class="panel">
+  <router-link :to="'/arc/' + id" class="panel">
     <div class="item">
       <base-thumbnail
-        url="https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg"
-        duration=" "
+        :url="
+          !arc.thumbnail_url
+            ? 'https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg'
+            : arc.thumbnail_url
+        "
+        duration=""
       ></base-thumbnail>
     </div>
     <div class="item info">
-      <h1>Prolouge - Land of Wave</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis natus officia asperiores aut facilis animi, atque voluptatum velit dolorem aspernatur?</p>
+      <h1>{{ arc.title }}</h1>
+      <p>{{ arc.description.substring(0, 200) + "..." }}</p>
     </div>
   </router-link>
   <hr>
@@ -22,7 +26,16 @@ export default {
   components: {
     BaseThumbnail,
   },
-  props: ['id', 'url']
+  props: ['id'],
+  computed: {
+    arc() {
+      try{
+        return this.$store.getters['arc/arc'](this.id);
+      } catch (err) {
+        this.$router.push('/');
+      }
+    }
+  }
 };
 </script>
 

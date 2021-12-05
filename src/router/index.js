@@ -15,15 +15,15 @@ import EditArc from '../views/EditArc.vue';
 const routes = [
     { path: '/', component: Home },
     { path: '/about', component: About },
-    { path: '/episode/:id', component: Episode },
+    { path: '/episode/:id', component: Episode, props: true },
     { path: '/naruto', component: Naruto },
     { path: '/shippuden', component: Shippuden },
     { path: '/arc', component: ArcList },
-    { path: '/arc/:id', component: ArcDetail },
+    { path: '/arc/:id', component: ArcDetail, props: true },
     { path: '/login', component: Login },
     { path: '/admin', component: Admin },
     { path: '/edit/episode', component: EditEpisode },
-    { path: '/edit/arc/:id', component: EditArc }
+    { path: '/edit/arc/:id', component: EditArc, props: true }
 ];
 
 const router = createRouter({

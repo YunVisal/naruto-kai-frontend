@@ -1,14 +1,18 @@
 <template>
-  <router-link :to="url" class="panel">
+  <router-link :to="'/episode/' + id" class="panel">
     <div class="item">
       <base-thumbnail
-        url="https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg"
-        duration="1:30:21"
+        :url="
+          !episode.thumbnail_url
+            ? 'https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg'
+            : episode.thumbnail_url
+        "
+        :duration="episode.duration"
       ></base-thumbnail>
     </div>
     <div class="item info">
-      <h1>Ep2: Naruto Uzumaki</h1>
-      <p>Prolouge - Land of wave</p>
+      <h1>Ep{{episode.episode}}: {{episode.title}}</h1>
+      <p>{{arcTitle}}</p>
     </div>
   </router-link>
 </template>
@@ -21,7 +25,23 @@ export default {
   components: {
     BaseThumbnail,
   },
-  props: ['url']
+  props: ["id"],
+  computed: {
+    episode() {
+      try{
+        return this.$store.getters["episode/episode"](this.id.toString());
+      }catch(err){
+        this.$router.push("/");
+      }
+    },
+    arcTitle() {
+      try{
+        return this.$store.getters["arc/arc"](this.episode.arc_id).title;
+      }catch(err){
+        this.$router.push("/");
+      }
+    },
+  },
 };
 </script>
 

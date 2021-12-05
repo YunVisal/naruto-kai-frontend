@@ -1,35 +1,41 @@
 <template>
-    <section class="arc-list">
-        <h1>Arc List</h1>
-        <p>The Naruto's Storyline is divided into arcs which connected to each other.</p>
-        <div class="list">
-            <arc-panel
-                v-for="index in 10"
-                :key="index"
-                :id="index"
-                url="/arc/"
-            />
-        </div>
-    </section>
+  <section class="arc-list">
+    <h1>Arc List</h1>
+    <p>
+      The Naruto's Storyline is divided into arcs which connected to each other.
+    </p>
+    <div class="list">
+      <arc-panel v-for="arc in arcs" :key="arc.id" :id="arc.id" />
+    </div>
+  </section>
 </template>
 
 <script>
-import ArcPanel from '../components/layout/ArcPanel.vue';
+import ArcPanel from "../components/layout/ArcPanel.vue";
 
 export default {
-    name: 'ArcList',
-    components: {
-        ArcPanel
-    }
-}
+  name: "ArcList",
+  components: {
+    ArcPanel,
+  },
+  computed: {
+    arcs() {
+      try {
+        return this.$store.getters["arc/arcs"];
+      } catch (err) {
+        this.$router.push("/");
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
-.arc-list{
-    margin: 1.5em;
+.arc-list {
+  margin: 1.5em;
 }
 
-.list{
-    margin: 1em 0;
+.list {
+  margin: 1em 0;
 }
 </style>
