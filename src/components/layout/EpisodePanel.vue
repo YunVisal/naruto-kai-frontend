@@ -1,11 +1,11 @@
 <template>
-  <router-link :to="'/episode/' + id" class="panel">
+  <router-link :to="route + id" class="panel">
     <div class="item">
       <base-thumbnail
         :url="
           !episode.thumbnail_url
             ? 'https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg'
-            : episode.thumbnail_url
+            : 'http://localhost:3000/thumbnail/' + episode.thumbnail_url
         "
         :duration="episode.duration"
       ></base-thumbnail>
@@ -25,7 +25,7 @@ export default {
   components: {
     BaseThumbnail,
   },
-  props: ["id"],
+  props: ["id", "route"],
   computed: {
     episode() {
       try{

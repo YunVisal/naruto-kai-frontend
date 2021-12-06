@@ -22,7 +22,7 @@ const routes = [
     { path: '/arc/:id', component: ArcDetail, props: true },
     { path: '/login', component: Login },
     { path: '/admin', component: Admin },
-    { path: '/edit/episode', component: EditEpisode },
+    { path: '/edit/episode/:id', component: EditEpisode, props: true },
     { path: '/edit/arc/:id', component: EditArc, props: true }
 ];
 

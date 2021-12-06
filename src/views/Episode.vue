@@ -7,7 +7,7 @@
     </div>
     <div class="next-container">
       <base-section title="Next Episode" v-if="Number(id) < 74">
-        <episode-panel :id="Number(episode.episode) + 1" />
+        <episode-panel :id="Number(episode.episode) + 1" route="/episode/" />
       </base-section>
       <episode-list />
     </div>

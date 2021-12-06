@@ -2,22 +2,30 @@
   <div class="edit-container">
     <div class="edit">
       <base-section title="Please input the below info">
-        <form method="get" @submit.prevent="login">
+        <form method="get" @submit.prevent="submit">
           <label for="id">Id: </label>
-          <input type="text" name="id" id="id" />
+          <input type="text" placeholder="id" v-model="arcId" />
 
           <label for="title">Title: </label>
-          <input type="text" name="title" id="title" />
+          <input type="text" placeholder="title" v-model="title" />
 
           <label for="thumbnail">Thumbnail: </label>
-          <input type="text" name="thumbnail" id="thumbnail" />
+          <input type="file" @change="onFileChange" />
 
           <label for="description">Description: </label>
-          <textarea name="description" id="description" cols="30" rows="10"></textarea>
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder="description" 
+            v-model="description"
+          ></textarea>
 
           <input type="submit" value="Submit" />
           <p v-if="isError">Something went wrong!</p>
         </form>
+        <button class="delete" v-if="!isLoading" @click="deleteArc">
+          Delete
+        </button>
       </base-section>
     </div>
   </div>
@@ -25,19 +33,85 @@
 
 <script>
 export default {
-    name: 'EditEpisode',
-    data(){
-        return {
-            isError: false
-        }
+  name: "EditArc",
+  props: ["id"],
+  data() {
+    return {
+      isError: false,
+      isLoading: false,
+      arcId: "",
+      title: "",
+      thumbnail: null,
+      description: "",
+    };
+  },
+  computed: {
+    arcs() {
+      try {
+        return this.$store.getters["arc/arcs"];
+      } catch (err) {
+        this.$router.push("/");
+      }
     },
-    methods: {
-        login(){
-            this.$router.push('/admin');
-            //this.isError = true;
-        }
+  },
+  created() {
+    if (this.id !== "0") {
+      this.fetchArc();
     }
-}
+  },
+  methods: {
+    onFileChange(e) {
+      const selectedFile = e.target.files[0];
+      this.thumbnail = selectedFile;
+    },
+    fetchArc() {
+      try {
+        const arc = this.$store.getters["arc/arc"](this.id);
+        this.arcId = arc.id;
+        this.title = arc.title;
+        this.thumbnail = arc.thumbnail_url;
+        this.description = arc.description;
+      } catch (err) {
+        this.$router.push("/");
+      }
+    },
+    async submit() {
+      this.isLoading = true;
+      try {
+        const formData = new FormData();
+        formData.append("id", this.arcId);
+        formData.append("title", this.title);
+        formData.append("thumbnail_url", this.thumbnail);
+        formData.append("description", this.description);
+
+        if(this.id !== "0"){
+          await this.$store.dispatch("arc/updateArc", {
+            id: this.id,
+            data: formData,
+          });
+        }
+        else{
+          await this.$store.dispatch("arc/postArc", formData);
+        }
+        this.isLoading = false;
+        this.$router.push("/admin");
+      } catch (err) {
+        this.isError = true;
+      }
+    },
+    async deleteArc() {
+      try {
+        this.isLoading = true;
+        await this.$store.dispatch("arc/deleteArc", this.id);
+        this.isLoading = false;
+        this.$router.push("/admin");
+      } catch (err) {
+        this.isLoading = false;
+        this.isError = true;
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -65,7 +139,7 @@ form {
 }
 
 form input[type="text"],
-form input[type="password"],
+form input[type="file"],
 textarea {
   display: block;
   margin: 0.5em 0;
@@ -77,7 +151,8 @@ textarea {
   font-size: 16px;
 }
 
-form input[type="submit"] {
+form input[type="submit"],
+.delete {
   background-color: #195098;
   padding: 0.5em;
   color: #fff;
@@ -86,19 +161,24 @@ form input[type="submit"] {
   outline: none;
 }
 
-p{
-    color: #f00;
+p {
+  color: #f00;
+}
+
+.delete {
+  background-color: #f00;
+  width: 100%;
 }
 
 @media screen and (max-width: 1024px) {
-    .edit{
-        width: 50%;
-    }
+  .edit {
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .edit{
-        width: 90%;
-    }
+  .edit {
+    width: 90%;
+  }
 }
 </style>

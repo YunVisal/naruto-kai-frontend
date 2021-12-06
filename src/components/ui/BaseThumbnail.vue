@@ -26,7 +26,7 @@ export default {
 
 .thumbnail{
     width: 100%;
-    height: auto;
+    height: 12em;
     border: 1px solid #000;
 }
 

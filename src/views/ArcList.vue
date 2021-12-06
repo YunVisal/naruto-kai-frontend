@@ -5,7 +5,7 @@
       The Naruto's Storyline is divided into arcs which connected to each other.
     </p>
     <div class="list">
-      <arc-panel v-for="arc in arcs" :key="arc.id" :id="arc.id" />
+      <arc-panel v-for="arc in arcs" :key="arc.id" :id="arc.id" route="/arc/" />
     </div>
   </section>
 </template>

@@ -14,16 +14,16 @@
         <div class="action">
           <base-button
             :title="isEpisode ? 'Add new Episode' : 'Add new Arc'"
-            :url="isEpisode ? '/edit/episode/' : '/edit/arc/0'"
+            :url="isEpisode ? '/edit/episode/0' : '/edit/arc/0'"
           />
         </div>
         <base-section title="Episode" v-if="isEpisode">
           <div class="panel-container" v-for="episode in episodes" :key="episode.episode">
-            <episode-panel :id="Number(episode.episode)" />
+            <episode-panel :id="Number(episode.episode)" route="/edit/episode/" />
           </div>
         </base-section>
         <base-section title="Arc" v-else>
-          <arc-panel v-for="arc in arcs" :key="arc.id" :id="arc.id" />
+          <arc-panel v-for="arc in arcs" :key="arc.id" :id="arc.id" route="/edit/arc/" />
         </base-section>
       </div>
     </div>
@@ -72,9 +72,7 @@ export default {
       this.$store.commit("auth/setToken", this.$cookies.get("_session"));
     }
 
-    if(!this.$store.getters["episode/hasEpisode"]){
-        this.loadData();
-    }
+    this.loadData();
   },
   methods: {
     toggleTab() {

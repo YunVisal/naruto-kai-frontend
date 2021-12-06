@@ -11,6 +11,38 @@ const arcModule = {
             const result = await res.json();
             context.commit('setArc', result.data);
         },
+        async postArc(context, payload){
+            const res = await fetch('http://localhost:3000/api/arc/', {
+                method: 'POST',
+                headers: {
+                    'Authorization': context.rootGetters['auth/token']
+                },
+                body: payload
+            });
+            const result = await res.json();
+            console.log(result);
+        },
+        async updateArc(context, payload){
+            const res = await fetch('http://localhost:3000/api/arc/' + payload.id, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': context.rootGetters['auth/token']
+                },
+                body: payload.data
+            });
+            const result = await res.json();
+            console.log(result);
+        },
+        async deleteArc(context, payload){
+            const res = await fetch('http://localhost:3000/api/arc/' + payload, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': context.rootGetters['auth/token']
+                }
+            });
+            const result = await res.json();
+            console.log(result);
+        }
     },
     mutations: {
         setArc(state, payload){

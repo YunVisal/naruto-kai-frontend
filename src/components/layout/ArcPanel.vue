@@ -1,11 +1,11 @@
 <template>
-  <router-link :to="'/arc/' + id" class="panel">
+  <router-link :to="route + id" class="panel">
     <div class="item">
       <base-thumbnail
         :url="
           !arc.thumbnail_url
             ? 'https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg'
-            : arc.thumbnail_url
+            : 'http://localhost:3000/thumbnail/' + arc.thumbnail_url
         "
         duration=""
       ></base-thumbnail>
@@ -26,7 +26,7 @@ export default {
   components: {
     BaseThumbnail,
   },
-  props: ['id'],
+  props: ['id', 'route'],
   computed: {
     arc() {
       try{
@@ -66,8 +66,8 @@ hr {
 }
 
 @media screen and (max-width: 1024px) {
-  .info {
-    flex-basis: 75%;
+  .item {
+    flex-basis: 50%;
   }
 }
 

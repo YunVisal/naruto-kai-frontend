@@ -15,7 +15,7 @@
       :url="
           !episode.thumbnail_url
             ? 'https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg'
-            : episode.thumbnail_url
+            : 'http://localhost:3000/thumbnail/' + episode.thumbnail_url
         "
       :duration="episode.duration"
     />
