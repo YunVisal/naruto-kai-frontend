@@ -131,6 +131,7 @@ export default {
 @media screen and (max-width: 1024px) {
   .panel-container {
     flex-basis: 100%;
+    margin: 1em 0;
   }
 }
 </style>

@@ -1,15 +1,20 @@
 <template>
   <Header />
-  <router-view />
+  <div class="content">
+    <router-view />
+  </div>
+  <Footer />
 </template>
 
 <script>
 import Header from './components/layout/Header.vue';
+import Footer from './components/layout/Footer.vue'
 
 export default {
     name: 'App',
     components: {
         Header,
+        Footer
     }
 }
 </script>
@@ -37,6 +42,10 @@ body {
 a{
     text-decoration: none;
     color: #000;
+}
+
+.content{
+  margin-bottom: 5em;
 }
 
 </style>

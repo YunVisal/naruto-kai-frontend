@@ -1,7 +1,7 @@
 <template>
   <section class="episode-container">
     <div class="video-container">
-      <video-container />
+      <video-container :url="episode.video_url" />
       <h1>Ep{{ episode.episode }}: {{ episode.title }}</h1>
       <p>{{ arcTitle }}</p>
     </div>
@@ -54,7 +54,7 @@ export default {
 }
 
 .video-container {
-  flex-basis: 70%;
+  flex-basis: 65%;
   padding: 1.5em;
 }
 
@@ -63,7 +63,7 @@ h1 {
 }
 
 .next-container {
-  flex-basis: 30%;
+  flex-basis: 35%;
 }
 
 @media screen and (max-width: 1024px) {

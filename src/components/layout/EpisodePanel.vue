@@ -48,9 +48,11 @@ export default {
 <style scoped>
 .panel {
   display: flex;
+  width: 100%;
 }
 .item {
   flex-basis: 50%;
+  justify-content: center;
   padding: 0.25em;
 }
 h1 {
@@ -60,13 +62,16 @@ h1 {
   background-color: #c99542;
 }
 
-@media screen and (max-width: 1024px) {
-  .info {
+@media screen and (max-width: 1024px){
+  .info{
     flex-basis: 75%;
   }
 }
 
 @media screen and (max-width: 767px) {
+  .item {
+    flex-basis: 100%;
+  }
   .panel {
     flex-direction: column;
   }

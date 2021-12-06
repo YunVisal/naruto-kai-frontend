@@ -43,6 +43,12 @@ export default {
 
 @media screen and (max-width: 1024px){
     .video-thumbnail{
+        flex-basis: 33.33%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    .video-thumbnail{
         flex-basis: 50%;
     }
 }
