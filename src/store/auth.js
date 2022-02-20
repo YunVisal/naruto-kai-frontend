@@ -12,7 +12,7 @@ const authModule = {
                 password: payload.password
             });
             const res = await fetch(
-                'http://localhost:3000/api/auth/login',
+                'http://18.181.207.102:80/api/auth/login',
                 {
                     method: 'post',
                     headers: {

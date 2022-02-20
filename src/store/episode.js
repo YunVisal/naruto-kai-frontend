@@ -9,12 +9,12 @@ const episodeModule = {
     },
     actions: {
         async fetchEpisodes(context){
-            const res = await fetch('http://localhost:3000/api/episode');
+            const res = await fetch('http://18.181.207.102:80/api/episode');
             const result = await res.json();
             context.commit('setEpisode', result.data);
         },
         async postEpisode(context, payload){
-            const res = await fetch('http://localhost:3000/api/episode/', {
+            const res = await fetch('http://18.181.207.102:80/api/episode/', {
                 method: 'POST',
                 headers: {
                     'Authorization': context.rootGetters['auth/token']
@@ -25,7 +25,7 @@ const episodeModule = {
             console.log(result);
         },
         async updateEpisode(context, payload){
-            const res = await fetch('http://localhost:3000/api/episode/' + payload.id, {
+            const res = await fetch('http://18.181.207.102:80/api/episode/' + payload.id, {
                 method: 'PUT',
                 headers: {
                     'Authorization': context.rootGetters['auth/token']
@@ -36,7 +36,7 @@ const episodeModule = {
             console.log(result);
         },
         async deleteEpisode(context, payload){
-            const res = await fetch('http://localhost:3000/api/episode/' + payload, {
+            const res = await fetch('http://18.181.207.102:80/api/episode/' + payload, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': context.rootGetters['auth/token']

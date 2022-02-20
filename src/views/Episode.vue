@@ -29,16 +29,18 @@ export default {
   props: ["id"],
   computed: {
     episode() {
-      try {
-        return this.$store.getters["episode/episode"](this.id);
-      } catch (err) {
+      const episode = this.$store.getters["episode/episode"](this.id);
+      if (episode) {
+        return episode;
+      } else {
         this.$router.push("/");
       }
     },
     arcTitle() {
-      try {
-        return this.$store.getters["arc/arc"](this.episode.arc_id).title;
-      } catch (err) {
+      const arcTitle = this.$store.getters["arc/arc"](this.episode.arc_id).title;
+      if (arcTitle) {
+        return arcTitle;
+      } else {
         this.$router.push("/");
       }
     },

@@ -31,9 +31,10 @@ export default {
   },
   computed: {
     episodes() {
-      try {
-        return this.$store.getters["episode/episodeCollection"](28, 73);
-      } catch (err) {
+      const episodes = this.$store.getters["episode/episodeCollection"](28, 74);
+      if (episodes[0]) {
+        return episodes;
+      } else {
         this.$router.push("/");
       }
     },

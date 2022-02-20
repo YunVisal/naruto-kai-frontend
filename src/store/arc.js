@@ -7,12 +7,12 @@ const arcModule = {
     },
     actions: {
         async fetchArcs(context){
-            const res = await fetch('http://localhost:3000/api/arc');
+            const res = await fetch('http://18.181.207.102:80/api/arc');
             const result = await res.json();
             context.commit('setArc', result.data);
         },
         async postArc(context, payload){
-            const res = await fetch('http://localhost:3000/api/arc/', {
+            const res = await fetch('http://18.181.207.102:80/api/arc/', {
                 method: 'POST',
                 headers: {
                     'Authorization': context.rootGetters['auth/token']
@@ -23,7 +23,7 @@ const arcModule = {
             console.log(result);
         },
         async updateArc(context, payload){
-            const res = await fetch('http://localhost:3000/api/arc/' + payload.id, {
+            const res = await fetch('http://18.181.207.102:80/api/arc/' + payload.id, {
                 method: 'PUT',
                 headers: {
                     'Authorization': context.rootGetters['auth/token']
@@ -34,7 +34,7 @@ const arcModule = {
             console.log(result);
         },
         async deleteArc(context, payload){
-            const res = await fetch('http://localhost:3000/api/arc/' + payload, {
+            const res = await fetch('http://18.181.207.102:80/api/arc/' + payload, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': context.rootGetters['auth/token']

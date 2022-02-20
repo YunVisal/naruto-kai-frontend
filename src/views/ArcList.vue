@@ -20,9 +20,10 @@ export default {
   },
   computed: {
     arcs() {
-      try {
-        return this.$store.getters["arc/arcs"];
-      } catch (err) {
+      const arcs = this.$store.getters["arc/arcs"];
+      if (arcs) {
+        return arcs;
+      } else {
         this.$router.push("/");
       }
     },
