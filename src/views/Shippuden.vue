@@ -10,7 +10,7 @@
         :url="
           !episode.thumbnail_url
             ? 'https://wallpapernoon.com/wp/full/naruto_wallpapers_63_5e64f.jpg'
-            : 'http://localhost:3000/thumbnail/' + episode.thumbnail_url
+            : 'https://github.com/YunVisal/naruto-kai-backend/blob/master/public/thumbnail/' + episode.thumbnail_url + '?raw=true'
         "
         :duration="episode.duration"
       />
